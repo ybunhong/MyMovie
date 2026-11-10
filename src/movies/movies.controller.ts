@@ -11,6 +11,8 @@ import {
 import { MoviesService } from './movies.service.js';
 import { CreateMovieDto } from './dto/create-movie.dto.js';
 import { UpdateMovieDto } from './dto/update-movie.dto.js';
+import { Query } from '@nestjs/common';
+import { QueryMovieDto } from './dto/query-movie.dto.js';
 
 @Controller('movies')
 export class MoviesController {
@@ -22,8 +24,8 @@ export class MoviesController {
   }
 
   @Get()
-  findAll() {
-    return this.moviesService.findAll();
+  findAll(@Query() query: QueryMovieDto) {
+    return this.moviesService.findAll(query);
   }
 
   @Get(':id')
